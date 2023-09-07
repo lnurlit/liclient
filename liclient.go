@@ -63,15 +63,17 @@ func (client *Client) fetch(method string, URL string, body io.Reader) (*http.Re
 	return client.HTTPClient.Do(request)
 }
 
-func (client *Client) CreateWithdrawal(amount int, description string) (Withdrawal, error) {
+func (client *Client) CreateWithdrawal(amount int, description string, webhookURL string) (Withdrawal, error) {
 	buffer := new(bytes.Buffer)
 
 	err := json.NewEncoder(buffer).Encode(struct {
 		Amount      int    `json:"amount"`
 		Description string `json:"description"`
+		WebhookURL  string `json:"webhookURL"`
 	}{
 		Amount:      amount,
 		Description: description,
+		WebhookURL:  webhookURL,
 	})
 
 	if err != nil {

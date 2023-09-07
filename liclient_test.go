@@ -29,7 +29,7 @@ func TestMain(main *testing.M) {
 }
 
 func TestCreateWithdrawal(test *testing.T) {
-	withdrawal, err := client.CreateWithdrawal(50, "Hello World")
+	withdrawal, err := client.CreateWithdrawal(50, "Hello World", "")
 
 	if err != nil {
 		test.Fatal(err)
@@ -39,7 +39,7 @@ func TestCreateWithdrawal(test *testing.T) {
 }
 
 func TestGetWithdrawal(test *testing.T) {
-	created, _ := client.CreateWithdrawal(50, "Hello World")
+	created, _ := client.CreateWithdrawal(50, "Hello World", "")
 
 	withdrawal, err := client.GetWithdrawal(created.ID)
 
@@ -51,7 +51,7 @@ func TestGetWithdrawal(test *testing.T) {
 }
 
 func TestDeleteWithdrawal(test *testing.T) {
-	created, _ := client.CreateWithdrawal(50, "Hello World")
+	created, _ := client.CreateWithdrawal(50, "Hello World", "")
 
 	err := client.DeleteWithdrawal(created.ID)
 
